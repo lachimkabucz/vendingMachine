@@ -10,7 +10,7 @@ public class ConfigurationTest {
     private Configuration testedConfig;
 
     @Before
-    public void init(){
+    public void init() {
         testedConfig = new Configuration();
     }
 
@@ -19,7 +19,7 @@ public class ConfigurationTest {
         // Given
         String unknownPropertyName = "iwquuwuuuwooownnjkw";
         String expectedDefault = "javaIsAwesome";
-        // When
+        // ŁWhen
         String propertyValue = testedConfig.getStringProperty(unknownPropertyName, expectedDefault);
         // Then
         assertEquals(expectedDefault, propertyValue);
@@ -27,7 +27,7 @@ public class ConfigurationTest {
 
 
     @Test
-    public void shouldReturnDefaultNumericalValueWhenPropertyIsUnknown() {
+    public void shouldReturnDefaultNumberValueWhenPropertyIsUnknown() {
         // Given
         String unknownPropertyValue = "uuuuuuussssssss";
         Long expectedLongDefault = 6L;
@@ -47,6 +47,7 @@ public class ConfigurationTest {
         // Then
         assertEquals(expectedStringValue, propertyValue);
     }
+
     @Test
     public void shouldReturnExistingLongValue() {
         // Given
@@ -57,7 +58,18 @@ public class ConfigurationTest {
         // Then
         assertEquals(expectedLongValue, propertyValue);
     }
+
+    @Test
+    public void shouldReturnKnownLongProperty() {
+        // given
+        String propertyName = "test.property.long";
+        Long defaultValue = 1337L;
+
+        // when
+        Long propertyValue =
+                testedConfig.getLongProperty(propertyName, defaultValue);
+
+        // then
+        assertEquals((Long) 9L, propertyValue);
+    }
 }
-
-
-
